@@ -8,6 +8,8 @@ class CreatePlanning extends StatefulWidget {
 }
 
 class _CreatePlanningState extends State<CreatePlanning> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,34 +18,41 @@ class _CreatePlanningState extends State<CreatePlanning> {
       child: Container(
           padding: const EdgeInsets.all(20),
           child: Form(
+              key: _formKey,
               child: Column(
-            children: [
-              Container(
-                margin: const EdgeInsets.only(bottom: 10),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                      labelText: 'Nom',
-                      hintText: 'Entrer le nom de l utilisateur',
-                      border: OutlineInputBorder()),
-                  validator: (String? value) {
-                    if (value == null || value.isEmpty)
-                      return "Tu dois completer ce texte";
-                  },
-                ),
-              ),
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: const ButtonStyle(
-                      foregroundColor: MaterialStatePropertyAll(Colors.white),
-                      backgroundColor: MaterialStatePropertyAll(Colors.blue)),
-                  child: const Text('Envoyer'),
-                ),
-              )
-            ],
-          ))),
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 10),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                          labelText: 'Nom',
+                          hintText: 'Entrer le nom de l utilisateur',
+                          border: OutlineInputBorder()),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return "Tu dois completer ce texte";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {}
+                      },
+                      style: const ButtonStyle(
+                          foregroundColor:
+                              MaterialStatePropertyAll(Colors.white),
+                          backgroundColor:
+                              MaterialStatePropertyAll(Colors.blue)),
+                      child: const Text('Envoyer'),
+                    ),
+                  )
+                ],
+              ))),
     ));
   }
 }
