@@ -25,6 +25,10 @@ class _CreatePlanningState extends State<CreatePlanning> {
                       labelText: 'Nom',
                       hintText: 'Entrer le nom de l utilisateur',
                       border: OutlineInputBorder()),
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty)
+                      return "Tu dois completer ce texte";
+                  },
                 ),
               ),
               SizedBox(
