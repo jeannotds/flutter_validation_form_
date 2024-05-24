@@ -41,7 +41,10 @@ class _CreatePlanningState extends State<CreatePlanning> {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {}
+                        if (_formKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text("Envois en cours")));
+                        }
                       },
                       style: const ButtonStyle(
                           foregroundColor:
