@@ -42,8 +42,12 @@ class _CreatePlanningState extends State<CreatePlanning> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                          //Afficher un message à l ecran lors de l envois du formulaire.
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text("Envois en cours")));
+
+                          //Disparaitre le clavier apres l envois du formulaire.
+                          FocusScope.of(context).requestFocus(FocusNode());
                         }
                       },
                       style: const ButtonStyle(
