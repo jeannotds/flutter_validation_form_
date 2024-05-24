@@ -17,13 +17,13 @@ class _CreatePlanningState extends State<CreatePlanning> {
 
   //Dispose controller for get data
 
-  @override
   void dispose() {
     super.dispose();
     confFirstNameController.dispose();
     confFirstNameController.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
