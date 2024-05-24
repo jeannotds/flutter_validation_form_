@@ -8,9 +8,22 @@ class CreatePlanning extends StatefulWidget {
 }
 
 class _CreatePlanningState extends State<CreatePlanning> {
+  //Creating key for controllin the form
   final _formKey = GlobalKey<FormState>();
 
+  //1. Use controller for get data of Text fields
+  final confNameController = TextEditingController();
+  final confFirstNameController = TextEditingController();
+
+  //Dispose controller for get data
+
   @override
+  void dispose() {
+    super.dispose();
+    confFirstNameController.dispose();
+    confFirstNameController.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
@@ -34,6 +47,7 @@ class _CreatePlanningState extends State<CreatePlanning> {
                         }
                         return null;
                       },
+                      controller: confNameController,
                     ),
                   ),
                   Container(
@@ -49,6 +63,7 @@ class _CreatePlanningState extends State<CreatePlanning> {
                         }
                         return null;
                       },
+                      controller: confFirstNameController,
                     ),
                   ),
                   SizedBox(
@@ -57,12 +72,20 @@ class _CreatePlanningState extends State<CreatePlanning> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                          // get data form
+                          final confName = confNameController.text;
+                          final confFistName = confFirstNameController.text;
+
                           //Afficher un message à l ecran lors de l envois du formulaire.
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text("Envois en cours")));
 
                           //Disparaitre le clavier apres l envois du formulaire.
                           FocusScope.of(context).requestFocus(FocusNode());
+
+                          // show data
+                          print("Name : ${confName}");
+                          print("FirstName : ${confFistName}");
                         }
                       },
                       style: const ButtonStyle(
