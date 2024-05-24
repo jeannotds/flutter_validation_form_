@@ -36,6 +36,21 @@ class _CreatePlanningState extends State<CreatePlanning> {
                       },
                     ),
                   ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 10),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                          labelText: 'prenom',
+                          hintText: 'Entrer le prenom de l utilisateur',
+                          border: OutlineInputBorder()),
+                      validator: (String? value) {
+                        if (value == null || value.isEmpty) {
+                          return "Tu dois completer ce texte";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
                   SizedBox(
                     width: double.infinity,
                     height: 50,
