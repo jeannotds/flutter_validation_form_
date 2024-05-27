@@ -15,15 +15,17 @@ class _CreatePlanningState extends State<CreatePlanning> {
   final confNameController = TextEditingController();
   final confFirstNameController = TextEditingController();
 
-  //Dispose controller for get data
+  String selectedConfType = 'talk';
 
+  @override
+
+  //2. Dispose controller for get data
   void dispose() {
     super.dispose();
     confFirstNameController.dispose();
     confFirstNameController.dispose();
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
@@ -66,6 +68,33 @@ class _CreatePlanningState extends State<CreatePlanning> {
                       controller: confFirstNameController,
                     ),
                   ),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 10),
+                    child: DropdownButtonFormField(
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                        ),
+                        items: const [
+                          DropdownMenuItem(
+                            value: 'talk',
+                            child: Text("talk show"),
+                          ),
+                          DropdownMenuItem(
+                            value: 'demo',
+                            child: Text("demo code"),
+                          ),
+                          DropdownMenuItem(
+                            value: 'partner',
+                            child: Text("partners"),
+                          ),
+                        ],
+                        value: selectedConfType,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedConfType = value!;
+                          });
+                        }),
+                  ),
                   SizedBox(
                     width: double.infinity,
                     height: 50,
@@ -86,6 +115,7 @@ class _CreatePlanningState extends State<CreatePlanning> {
                           // show data
                           print("Name : ${confName}");
                           print("FirstName : ${confFistName}");
+                          print("selectedConfType : ${selectedConfType}");
                         }
                       },
                       style: const ButtonStyle(
