@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:date_field/date_field.dart';
 
 class CreatePlanning extends StatefulWidget {
   const CreatePlanning({super.key});
@@ -16,6 +17,7 @@ class _CreatePlanningState extends State<CreatePlanning> {
   final confFirstNameController = TextEditingController();
 
   String selectedConfType = 'talk';
+  DateTime selectedDate = DateTime.now();
 
   @override
 
@@ -69,7 +71,7 @@ class _CreatePlanningState extends State<CreatePlanning> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(bottom: 10),
+                    margin: const EdgeInsets.only(bottom: 10),
                     child: DropdownButtonFormField(
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
@@ -95,6 +97,23 @@ class _CreatePlanningState extends State<CreatePlanning> {
                           });
                         }),
                   ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 10),
+                    child: DateTimeFormField(
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            hintText: 'date',
+                            label: Text('Entrer la date')),
+                        initialPickerDateTime:
+                            DateTime.now().add(const Duration(days: 20)),
+                        validator: (e) =>
+                            (e?.day ?? 0) == 1 ? "Please select a day" : null,
+                        onChanged: (DateTime? value) {
+                          setState(() {
+                            selectedDate = value!;
+                          });
+                        }),
+                  ),
                   SizedBox(
                     width: double.infinity,
                     height: 50,
@@ -116,6 +135,7 @@ class _CreatePlanningState extends State<CreatePlanning> {
                           print("Name : ${confName}");
                           print("FirstName : ${confFistName}");
                           print("selectedConfType : ${selectedConfType}");
+                          print("selectedDate : ${selectedDate}");
                         }
                       },
                       style: const ButtonStyle(
